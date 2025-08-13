@@ -580,10 +580,11 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Handle form submission
-const contactForm = document.querySelector('#contact form');
+const contactForm = document.querySelector('.contact-form form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    async function handleSubmit(event) {
+        event.preventDefault();
+        console.log('Form submission started');
         
         // Add loading state
         const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -591,22 +592,117 @@ if (contactForm) {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Simulate form submission (replace with actual form handling)
+        // Get form data
+        const data = new FormData(event.target);
+        console.log('Form data:', Object.fromEntries(data));
+        console.log('Form action:', event.target.action);
+        console.log('Form method:', contactForm.method);
+        
+        try {
+            const response = await fetch(event.target.action, {
+                method: contactForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
+            
+            if (response.ok) {
+                // Success
+                console.log('Form submitted successfully');
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                submitBtn.style.background = 'var(--gradient-secondary)';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Show success message
+                showNotification('Thanks for your submission!', 'success');
+            } else {
+                // Handle Formspree errors
+                console.log('Form submission failed with status:', response.status);
+                const errorData = await response.json();
+                console.log('Error data:', errorData);
+                
+                if (Object.hasOwn(errorData, 'errors')) {
+                    const errorMessage = errorData.errors.map(error => error.message).join(", ");
+                    showNotification(errorMessage, 'error');
+                } else {
+                    showNotification('Oops! There was a problem submitting your form', 'error');
+                }
+                
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                submitBtn.style.background = '#e74c3c';
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+            submitBtn.style.background = '#e74c3c';
+            
+            // Show error message
+            showNotification('Oops! There was a problem submitting your form', 'error');
+        }
+        
+        // Reset button after 3 seconds
         setTimeout(() => {
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-            submitBtn.style.background = 'var(--gradient-secondary)';
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        }, 2000);
-    });
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+        }, 3000);
+    }
+    
+    contactForm.addEventListener('submit', handleSubmit);
+    console.log('Form event listener added');
+}
+
+// Notification function
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
 }
 
 // Add intersection observer for lazy loading

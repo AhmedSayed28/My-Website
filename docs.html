@@ -41,6 +41,16 @@
         </div>
     </div>
 
+    <!-- Feedback Message Box -->
+    <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-content">
+            <p>If you see anything that can be improved, please <button class="feedback-link" onclick="scrollToContact()">click here</button> and let us know!</p>
+            <button class="feedback-close" onclick="closeFeedback()" aria-label="Close feedback">
+                <span>×</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Mobile Menu Toggle -->
     <div class="mobile-menu-toggle">
         <button id="sidebarToggle" class="sidebar-toggle-btn">
@@ -1150,5 +1160,23 @@ jobs:
     <div class="tooltip" id="instapayTooltip">Number copied!</div>
 
     <script src="./assets/js/docs.js"></script>
+    
+    <!-- Test script for feedback box -->
+    <script>
+        // Test if feedback box appears
+        window.addEventListener('load', function() {
+            console.log('Page loaded, testing feedback box...');
+            const feedbackBox = document.getElementById('feedbackBox');
+            console.log('Feedback box on load:', feedbackBox);
+            
+            if (feedbackBox) {
+                // Force show after 2 seconds
+                setTimeout(() => {
+                    feedbackBox.classList.add('show');
+                    console.log('Feedback box forced to show');
+                }, 2000);
+            }
+        });
+    </script>
 </body>
 </html>

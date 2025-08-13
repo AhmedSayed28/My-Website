@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initProTips();
     initDonationSection();
+    initFeedbackBox(); // Initialize feedback box
 });
 
 // Loader functionality
@@ -28,6 +29,59 @@ function initLoader() {
                 loaderContainer.remove();
             }, 800);
         }, 2500); // Show loader for 2.5 seconds
+    }
+}
+
+// Feedback Box Functions
+function initFeedbackBox() {
+    console.log('Initializing feedback box...');
+    
+    // Test if element exists immediately
+    const feedbackBox = document.getElementById('feedbackBox');
+    console.log('Feedback box element (immediate):', feedbackBox);
+    
+    if (feedbackBox) {
+        // Show feedback box immediately for testing
+        setTimeout(() => {
+            feedbackBox.classList.add('show');
+            console.log('Feedback box shown immediately');
+        }, 1000); // Show after 1 second for testing
+    } else {
+        console.error('Feedback box element not found immediately');
+    }
+    
+    // Also try the original timing
+    setTimeout(() => {
+        const feedbackBoxDelayed = document.getElementById('feedbackBox');
+        console.log('Feedback box element (delayed):', feedbackBoxDelayed);
+        if (feedbackBoxDelayed) {
+            feedbackBoxDelayed.classList.add('show');
+            console.log('Feedback box shown (delayed)');
+        } else {
+            console.error('Feedback box element not found (delayed)');
+        }
+    }, 3000); // Show after 3 seconds (after loader)
+}
+
+// Scroll to contact form (redirect to index.html contact section)
+function scrollToContact() {
+    console.log('Scroll to contact clicked');
+    // Redirect to the contact section on the main page
+    window.open('index.html#contact', '_blank');
+}
+
+// Close feedback box
+function closeFeedback() {
+    console.log('Close feedback clicked');
+    const feedbackBox = document.getElementById('feedbackBox');
+    if (feedbackBox) {
+        feedbackBox.style.transform = 'translateX(100%)';
+        feedbackBox.style.opacity = '0';
+        
+        // Remove from DOM after animation
+        setTimeout(() => {
+            feedbackBox.remove();
+        }, 300);
     }
 }
 

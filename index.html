@@ -60,6 +60,17 @@
         <div class="particle"></div>
     </div>
 
+    <!-- Feedback Message Box -->
+    <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-content">
+            <p> <button class="feedback-link" onclick="scrollToContact()">Let's Contact&nbsp;&nbsp; &nbsp;&nbsp;
+            </button> </p>
+            <button class="feedback-close" onclick="closeFeedback()" aria-label="Close feedback">
+                <span>×</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -132,7 +143,7 @@
                         </p>
                         
                         <div class="hero-actions">
-                            <a href="./assets/CV/SeniorQA_AhmedGhaly.pdf" target="_blank" class="btn btn-primary">
+                            <a href="./assets/CV/SeniorQA_AhmedSayed.pdf" target="_blank" class="btn btn-primary">
                                 <span class="btn-icon"><i class="fas fa-download"></i></span>
                                 <span class="btn-text">Download CV</span>
                                 <div class="btn-glow"></div>
@@ -545,7 +556,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Email</h4>
-                                <p>ahmed.ghaly@example.com</p>
+                                <p>qa.ahmedsayed@gmail.com</p>
                         </div>
                     </div>
 
@@ -571,7 +582,7 @@
                     </div>
 
                     <div class="contact-form" data-aos="fade-left" data-aos-delay="400">
-                        <form action="https://formspree.io/f/meozdqop" method="POST">
+                        <form action="https://formspree.io/f/xgedjydy" method="POST" id="contactForm">
                             <div class="form-group">
                                 <input type="text" name="name" required>
                                 <label>Your Name</label>
@@ -602,6 +613,9 @@
                                 <div class="btn-glow"></div>
                             </button>
                         </form>
+                        
+                        <!-- Formspree Status -->
+                        <div id="formStatus" style="display: none; margin-top: 15px; padding: 10px; border-radius: 5px; text-align: center;"></div>
                     </div>
                 </div>
             </div>
@@ -634,6 +648,100 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./assets/js/main.js"></script>
+    
+    <!-- Formspree Integration -->
+    <script>
+        var form = document.getElementById("contactForm");
+        var status = document.getElementById("formStatus");
+        
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Show loading
+            status.style.display = "block";
+            status.style.background = "#3498db";
+            status.style.color = "white";
+            status.innerHTML = "Sending message...";
+            
+            var data = new FormData(event.target);
+            
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    status.style.background = "#27ae60";
+                    status.innerHTML = "Thanks for your submission!";
+                    form.reset();
+                } else {
+                    const errorData = await response.json();
+                    if (Object.hasOwn(errorData, 'errors')) {
+                        status.style.background = "#e74c3c";
+                        status.innerHTML = errorData.errors.map(error => error.message).join(", ");
+                    } else {
+                        status.style.background = "#e74c3c";
+                        status.innerHTML = "Oops! There was a problem submitting your form";
+                    }
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                status.style.background = "#e74c3c";
+                status.innerHTML = "Oops! There was a problem submitting your form";
+            }
+            
+            // Hide status after 5 seconds
+            setTimeout(() => {
+                status.style.display = "none";
+            }, 5000);
+        }
+        
+        if (form) {
+            form.addEventListener("submit", handleSubmit);
+        }
+    </script>
+    
+    <!-- Feedback Box Functions -->
+    <script>
+        // Show feedback box after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const feedbackBox = document.getElementById('feedbackBox');
+                if (feedbackBox) {
+                    feedbackBox.classList.add('show');
+                }
+            }, 2000); // Show after 2 seconds
+        });
+        
+        // Scroll to contact form
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        // Close feedback box
+        function closeFeedback() {
+            const feedbackBox = document.getElementById('feedbackBox');
+            if (feedbackBox) {
+                feedbackBox.style.transform = 'translateX(100%)';
+                feedbackBox.style.opacity = '0';
+                
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    feedbackBox.remove();
+                }, 300);
+            }
+        }
+    </script>
 </body>
 
 </html>
