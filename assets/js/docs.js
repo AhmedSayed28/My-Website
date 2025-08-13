@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initCodeCopy();
     initActiveSectionHighlighting();
     initSmoothScrolling();
+    initProTips();
+    initDonationSection();
 });
 
 // Sidebar Navigation
@@ -375,3 +377,108 @@ window.addEventListener('popstate', function() {
         });
     }
 });
+
+// Pro Tips Functionality
+function initProTips() {
+    const proTipsContainer = document.getElementById('proTipsContainer');
+    const proTipsToggle = document.getElementById('proTipsToggle');
+    const proTipsContent = document.getElementById('proTipsContent');
+    const tipSlides = document.querySelectorAll('.tip-slide');
+    
+    let currentTip = 0;
+    let tipInterval;
+    
+    // Toggle Pro Tips visibility
+    if (proTipsToggle && proTipsContainer) {
+        proTipsToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            proTipsContainer.classList.toggle('collapsed');
+            
+            if (proTipsContainer.classList.contains('collapsed')) {
+                clearInterval(tipInterval);
+            } else {
+                startTipRotation();
+            }
+        });
+        
+        // Also allow clicking on header to toggle
+        proTipsContainer.querySelector('.pro-tips-header').addEventListener('click', function(e) {
+            if (e.target !== proTipsToggle) {
+                proTipsToggle.click();
+            }
+        });
+    }
+    
+    // Rotate tips
+    function rotateTips() {
+        tipSlides.forEach(slide => slide.classList.remove('active'));
+        currentTip = (currentTip + 1) % tipSlides.length;
+        tipSlides[currentTip].classList.add('active');
+    }
+    
+    function startTipRotation() {
+        tipInterval = setInterval(rotateTips, 5000); // 6 seconds
+    }
+    
+    // Start rotation if not collapsed
+    if (!proTipsContainer.classList.contains('collapsed')) {
+        startTipRotation();
+    }
+    
+    // Pause rotation on hover
+    if (proTipsContent) {
+        proTipsContent.addEventListener('mouseenter', () => clearInterval(tipInterval));
+        proTipsContent.addEventListener('mouseleave', () => {
+            if (!proTipsContainer.classList.contains('collapsed')) {
+                startTipRotation();
+            }
+        });
+    }
+}
+
+// Donation Section Functionality
+function initDonationSection() {
+    const donationContainer = document.getElementById('donationContainer');
+    const donationToggle = document.getElementById('donationToggle');
+    const instapayBtn = document.getElementById('instapayBtn');
+    const tooltip = document.getElementById('instapayTooltip');
+    
+    // Toggle donation box
+    if (donationToggle && donationContainer) {
+        donationToggle.addEventListener('click', function() {
+            donationContainer.classList.toggle('collapsed');
+        });
+    }
+    
+    // InstaPay button functionality
+    if (instapayBtn) {
+        instapayBtn.addEventListener('click', function() {
+            const phoneNumber = '01115081316';
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                showTooltip();
+            }).catch(err => {
+                console.error('Failed to copy number:', err);
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(phoneNumber);
+                showTooltip();
+            });
+        });
+    }
+    
+    function showTooltip() {
+        if (tooltip) {
+            // Position tooltip near the button
+            const rect = instapayBtn.getBoundingClientRect();
+            tooltip.style.left = rect.left + (rect.width / 2) - 50 + 'px';
+            tooltip.style.top = rect.top - 40 + 'px';
+            
+            tooltip.classList.add('show');
+            
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 2000);
+        }
+    }
+}
