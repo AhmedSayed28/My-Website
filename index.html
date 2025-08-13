@@ -5,624 +5,603 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eng / Ahmed Sayed</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/aos.css">
-    <link rel="stylesheet" href="./assets/css/line-awesome.min.css">
+    <title>Ahmed Sayed - QA/QC Software Engineer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="icon" href="./assets/images/fav-icon.png">
-
+    <link rel="icon" href="./assets/images/favicon.ico">
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar">
+<body>
+    <!-- Cursor Follower -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-dot"></div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container flex-lg-column">
-            <a class="navbar-brand mx-lg-auto mb-lg-4" href="#">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
 
-                <span class="h2 d-flex fw-bold d-lg-none"><img style="width: 25px;" class="d-flex d-lg-none"
-                        src="./assets/images/favicon.ico"></img>hmed Ghaly 😊</span>
-                <img src="./assets/images/person.jpg" class="d-none d-lg-block rounded-5" alt="I'm">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto flex-lg-column text-lg-center">
+    <!-- Particle Background -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#work">Work</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reviews">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Certifications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <span class="logo-text">Ahmed Sayed</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active" data-section="home">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#services" class="nav-link" data-section="services">
+                    <span class="nav-icon"><i class="fas fa-cogs"></i></span>
+                    <span class="nav-text">Services</span>
+                </a>
+                <a href="#work" class="nav-link" data-section="work">
+                    <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                    <span class="nav-text">Work</span>
+                </a>
+                <a href="#about" class="nav-link" data-section="about">
+                    <span class="nav-icon"><i class="fas fa-user"></i></span>
+                    <span class="nav-text">About</span>
+                </a>
+                <a href="#certifications" class="nav-link" data-section="certifications">
+                    <span class="nav-icon"><i class="fas fa-certificate"></i></span>
+                    <span class="nav-text">Certifications</span>
+                </a>
+                <a href="#contact" class="nav-link" data-section="contact">
+                    <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                    <span class="nav-text">Contact</span>
+                </a>
+                
+            </div>
 
-                </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
-    <!-- //NAVBAR -->
 
-    <!-- CONTENT WRAPPER -->
-    <div id="content-wrapper">
-
-        <!-- HOME -->
-        <section id="home" class="full-height px-lg-5">
-
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section home-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <img class="d-lg-none rounded-5" src="./assets/images/person.jpg" alt="I'm"
-                            style="width:260px ; border: 8px solid #deff58;">
-                        <h1 class="display-4 fw-bold" data-aos="fade-up">I'M A QA/QC Software Engineer 🐞</h1>
-                        <p class="lead mt-2 mb-4" data-aos="fade-up" data-aos-delay="300">I'm Ahmed Ghaly 😊, a highly motivated and enthusiastic Senior QA Engineer with 3 years of experience in manual and automated testing.</p>
-                        <div data-aos="fade-up" data-aos-delay="600">
-                            <a href="./assets/CV/SeniorQA_AhmedGhaly.pdf" target="_blank"
-                                class="btn btn-brand me-3">Download CV <i class="las la-download"
-                                    style="font-size:1.25rem ;"></i></a>
-                            <a href="https://wa.link/9dcxq8" target="_blank" class="link-custom">WhatsApp Me: (+20) 011
-                                150 81 316</a>
+                <div class="home-content">
+                    <div class="home-text" data-aos="fade-up" data-aos-delay="200">
+                        <div class="greeting">
+                            <span class="wave">👋</span>
+                            <span class="greeting-text">Hello, I'm</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-        <!-- //HOME -->
-
-        <!-- SERVICES -->
-        <section id="services" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">SERVICES</h6>
-                        <h1>Services That I Provide</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-4" data-aos="fade-up">
-                        <div class="service p-4 bg-base rounded-4 shadow-effect">
-                            <div class="iconbox rounded-4">
-                                <i class="las la-pager"></i>
-                            </div>
-                            <h5 class="mt-4 mb-2">Manual Testing 🧪</h5>
-                            <p>I excel in creating detailed test cases, writing comprehensive bug reports, and utilizing management tools to ensure software quality and efficiency.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service p-4 bg-base rounded-4 shadow-effect">
-                            <div class="iconbox rounded-4">
-                                <i class="las la-cart-plus"></i>
-                            </div>
-                            <h5 class="mt-4 mb-2">Automated Testing 🤖</h5>
-                            <p>I develop and execute automated test scripts, design robust testing frameworks, and leverage automation tools to enhance efficiency and ensure software reliability.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service p-4 bg-base rounded-4 shadow-effect">
-                            <div class="iconbox rounded-4">
-                                <i class="las la-laptop-code"></i>
-                            </div>
-                            <h5 class="mt-4 mb-2">API Testing 🔗</h5>
-                            <p>I validate API functionality, performance, and security by creating test cases, automating API tests, and using tools like Postman and Swagger to ensure seamless integration and reliability.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- SERVICES -->
-
-        <!-- WORK -->
-        <section id="work" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">Portfolio</h6>
-                        <h1>Domains I worked on ...</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                                <img class="rounded-4" src="./assets/images/ai.png" alt="Project">
-                            <div class="card-custom-image card-custom-content p-4">
-                                <h4>AI</h4>
-                                <!-- <a href="https://devahmedsayed.netlify.app/" class="link-custom">Live View</a> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/fintech.png" alt="Project">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>FinTech</h4>
-                                <!-- <p>Medical E-commerce </p> -->
-                                <!-- <a href="https://scopedent.com/" class="link-custom">Live View</a> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/ecommerce.png" alt="Project">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>E-commerce</h4>
-                                <!-- <p>Fashon E-commerce</p> -->
-                                <!-- <a href="https://encridable-ecommerce.netlify.app/" class="link-custom">Live View</a> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/crm.png" alt="Project">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>CRM</h4>
-                                <!-- <a href="https://memotravel28.netlify.app/" class="link-custom">Live View</a> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project-5.jpg" alt="Project">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>Shinny To Do List</h4>
-
-                                <a href="https://shiny-todo.netlify.app/" class="link-custom">Live View</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/el3alamy.JPG" alt="Project">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>Air conditioning company in Saudi Arabia</h4>
-
-                                <a href="https://al3alamy.netlify.app/" class="link-custom">Live View</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project-6.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>X O Game</h4>
-
-                                <a href="https://imagine-xo-game.netlify.app/" class="link-custom">Live View</a>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-
-            </div>
-        </section>
-        <!-- //WORK -->
-
-        <!-- ABOUT -->
-        <section id="about" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">ABOUT</h6>
-                        <h1>My Education & Experiance</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-5">
-                    <div class="col-lg-6">
-
-                        <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Education</h3>
-                        <div class="row gy-4">
-
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Software Testing</h4>
-                                    <p class="text-brand mb-2">Minia University , ITI .</p>
-                                </div>
-                            </div>
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Bachelor's degree in Computer Science and Information Systems</h4>
-                                    <p class="text-brand mb-2">Minia University , Faculty of Computers and information .
-                                        (2019 - 2023)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-6">
-
-                        <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Experiance</h3>
-                        <div class="row gy-4">
-
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Senior QA Engineer</h4>
-                                    <p class="text-brand mb-2">
-                                        OrobaSoft (01/2025 – present)
-                                    </p>
-                                    <p class="mb-0">
-
-                                        •Designed and executed test cases and test scenarios, identifying and reporting critical
-                                        issues effectively.
-                                        <br>
-                                        •Led defect tracking and reporting processes using ClickUp and TFS, enhancing bugtracking
-                                        efficiency.<br>
-                                        •Conducted comprehensive API testing using Postman, ensuring accurate functionality
-                                        and seamless integration.<br>
-                                        •Collaborated with cross-functional teams to refine project scope and align test
-                                        objectives, improving project delivery timelines.<br>
-                                        •Integrated automation tests for portal and mobile apps (using Selenium and Appium)
-                                        into the testing lifecycle, contributing to improved coverage.<br>
-                                        •Conducted regression testing to validate defect fixes and maintain software stability
-                                        across updates.
-
-                                    </p>
-                                </div>
-                            </div>
-
-
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Software Test Engineer Instructor</h4>
-                                    <p class="text-brand mb-2">
-                                        Semi Corner, (Jan 2024 -
-                                        Dec 2024.)
-                                    </p>
-                                    <p class="mb-0">
-
-                                        •Developed and delivered courses on manual and automation testing.<br>
-                                        •Mentored students and junior testers on testing methodologies and tools like Selenium.<br>
-                                        •Integrated real-world scenarios into courses to bridge the gap between theory and
-                                        practice.
-
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Mid-Level QA Engineer</h4>
-                                    <p class="text-brand mb-2">
-                                        SBS - Specialized Business Solutions (01/2024 – 01/2025)
-                                    </p>
-                                    <p class="mb-0">
-
-                                        •Automated test cases using Selenium WebDriver and TestNG to increase testing
-                                        efficiency.<br>
-                                        •Conducted API testing using tools like Postman to validate endpoints.<br>
-                                        •Led test planning sessions to identify test scenarios and optimize coverage.<br>
-                                        •Analyzed requirements and identified gaps to ensure product quality.<br>
-                                        •Supported junior testers with mentorship and code reviews.
-
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Software QA Engineer</h4>
-                                    <p class="text-brand mb-2">
-                                        Wakeb_Data, (02/2022 – 01/2024)
-                                    </p>
-                                    <p class="mb-0">
-
-                                        •Conducted manual testing across multiple platforms, reducing defect leakage.<br>
-                                        •Collaborated with developers to resolve identified issues, improving time-to-fixing.<br>
-                                        •Performed functional and regression testing for web applications.<br>
-                                        •Designed user-friendly test cases that optimized user experience testing.<br>
-                                        •Designed and implemented test automation strategies, improving coverage.
-
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect">
-                                    <h4>Software Test Engineer Trainee</h4>
-                                    <p class="text-brand mb-2">
-                                        ITWorx Education, (12/2021 – 02/2022)
-                                    </p>
-                                    <p class="mb-0">
-                                        •Conducted manual testing across multiple platforms, reducing defect leakage.<br>
-                                        •Collaborated with developers to resolve identified issues, improving time-to-fixing.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- //ABOUT -->
-
-        <!-- REVIEWS -->
-        <!-- <section id="reviews" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">REVIEWS</h6>
-                        <h1>What our subscribers say</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-4" data-aos="fade-up">
-
-                        <div class="review shadow-effect bg-base p-4 rounded-4">
-
-                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quae facilis
-                                fugiat molestias ab illum excepturi, qui optio modi asperiores, delectus maiores!</p>
-                            <div class="text-brand h5">
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                            </div>
-                            <div class="person">
-                                <h5 class="mb-0">Ahmed Sayed</h5>
-                                <p class="mb-0">facebook</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-
-                        <div class="review shadow-effect bg-base p-4 rounded-4">
-                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quae facilis
-                                fugiat molestias ab illum excepturi, qui optio modi asperiores, delectus maiores!</p>
-                            <div class="text-brand h5">
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                            </div>
-                            <div class="person">
-                                <h5 class="mb-0">Ahmed Sayed</h5>
-                                <p class="mb-0">facebook</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-
-                        <div class="review shadow-effect bg-base p-4 rounded-4">
-
-                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quae facilis
-                                fugiat molestias ab illum excepturi, qui optio modi asperiores, delectus maiores!</p>
-                            <div class="text-brand h5">
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                            </div>
-                            <div class="person">
-                                <h5 class="mb-0">Ahmed Sayed</h5>
-                                <p class="mb-0">facebook</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section> -->
-        <!-- //REVIEWS -->
-
-        <!-- BLOG -->
-        <section id="blog" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">Certifications</h6>
-                        <h1>My Own Certifications</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-4" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" style="width: 80%;" src="./assets/images/ISQB.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">ISTQB</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-1.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">Development Skills</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-2.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">Object Orianted Programming with C#</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-3.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">PHP , my SQL</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-4.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">Data Structures and Design Patterns</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-5.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">HTML5 , CSS</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-6.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h5 class="mb-4">Personal Skills</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- //BLOG -->
-
-        <!-- CONTACT -->
-        <section id="contact" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8 pb-4" data-aos="fade-up">
-                        <h6 class="text-brand">CONTACT</h6>
-                        <h1>Interested in working together? Let's talk
+                        
+                        <h1 class="hero-title">
+                            <span class="title-line">Ahmed Sayed</span>
+                            <span class="title-subtitle">QA/QC Software Engineer</span>
                         </h1>
+                        
+                        <p class="hero-description">
+                            A passionate and innovative Senior QA Engineer with 3+ years of experience in 
+                            <span class="highlight">manual testing</span>, 
+                            <span class="highlight">automated testing</span>, and 
+                            <span class="highlight">API testing</span>. 
+                            I transform complex testing challenges into elegant solutions.
+                        </p>
+                        
+                        <div class="hero-actions">
+                            <a href="./assets/CV/SeniorQA_AhmedGhaly.pdf" target="_blank" class="btn btn-primary">
+                                <span class="btn-icon"><i class="fas fa-download"></i></span>
+                                <span class="btn-text">Download CV</span>
+                                <div class="btn-glow"></div>
+                            </a>
+                            
+                            <a href="https://wa.link/9dcxq8" target="_blank" class="btn btn-secondary">
+                                <span class="btn-icon"><i class="fab fa-whatsapp"></i></span>
+                                <span class="btn-text">WhatsApp Me</span>
+                            </a>
+                            
+                            <a href="docs.html" target="_blank" class="btn btn-accent">
+                                <span class="btn-icon"><i class="fas fa-book"></i></span>
+                                <span class="btn-text">Selenium Docs</span>
+                                <div class="btn-glow"></div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="home-visual" data-aos="fade-left" data-aos-delay="400">
+                        <div class="profile-card">
+                            <div class="profile-image">
+                                <img src="./assets/images/person.jpg" alt="Ahmed Sayed">
+                                <div class="profile-glow"></div>
+                            </div>
+                            <div class="floating-elements">
+                                <div class="floating-icon" style="--delay: 0s">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 1s">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 2s">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                    <span>Scroll to explore</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">What I Do</span>
+                        Services & Expertise
+                    </h2>
+                    <p class="section-subtitle">
+                        Transforming testing challenges into innovative solutions with cutting-edge tools and methodologies
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon">
+                            <i class="fas fa-flask"></i>
+                            <div class="icon-glow"></div>
+                            </div>
+                        <h3>Manual Testing</h3>
+                        <p>Comprehensive test case design, detailed bug reporting, and efficient test management using industry-leading tools.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Test Cases</span>
+                            <span class="feature-tag">Bug Reports</span>
+                            <span class="feature-tag">Test Management</span>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
 
-                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
-                        <form action="https://formspree.io/f/xgedjydy" method="POST" class="row g-lg-3 gy-3">
-                            <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                            <div class="icon-glow"></div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <input id="Email" type="email" name="email" class="form-control"
-                                    placeholder="Enter your email">
+                        <h3>Automated Testing</h3>
+                        <p>Development of robust test automation frameworks and scripts to enhance efficiency and ensure software reliability.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Selenium</span>
+                            <span class="feature-tag">Appium</span>
+                            <span class="feature-tag">TestNG</span>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon">
+                            <i class="fas fa-link"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>API Testing</h3>
+                        <p>Comprehensive API validation including functionality, performance, and security testing using modern tools.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Postman</span>
+                            <span class="feature-tag">Swagger</span>
+                            <span class="feature-tag">REST APIs</span>
                             </div>
-                            <div class="form-group col-12">
-                                <input id="sub" type="text" name="subject" class="form-control"
-                                    placeholder="Enter subject">
+                        <div class="card-glow"></div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="section work-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">My Experience</span>
+                        Domains I've Worked On
+                    </h2>
+                    <p class="section-subtitle">
+                        Diverse experience across multiple industries and technologies
+                    </p>
+                </div>
+
+                <div class="work-grid">
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="work-image">
+                            <img src="./assets/images/ai.png" alt="AI">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>Artificial Intelligence</h3>
+                                    <p>Testing AI-powered applications and machine learning models</p>
                             </div>
-                            <div class="form-group col-12">
-                                <textarea id="message" name="message" rows="4" class="form-control"
-                                    placeholder="Enter your message"></textarea>
+                        </div>
+                    </div>
+                        <div class="work-info">
+                            <h3>AI & Machine Learning</h3>
+                            <div class="work-tags">
+                                <span class="tag">AI Testing</span>
+                                <span class="tag">ML Models</span>
                             </div>
-                            <div class="form-group col-12 d-grid">
-                                <button type="submit" class="btn btn-brand">Message me</button>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="work-image">
+                            <img src="./assets/images/fintech.png" alt="FinTech">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>Financial Technology</h3>
+                                    <p>Testing secure financial applications and payment systems</p>
                             </div>
+                        </div>
+                    </div>
+                        <div class="work-info">
+                            <h3>FinTech Solutions</h3>
+                            <div class="work-tags">
+                                <span class="tag">Payment Systems</span>
+                                <span class="tag">Security</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="work-image">
+                            <img src="./assets/images/ecommerce.png" alt="E-commerce">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>E-commerce Platforms</h3>
+                                    <p>Testing online shopping experiences and payment flows</p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="work-info">
+                            <h3>E-commerce</h3>
+                            <div class="work-tags">
+                                <span class="tag">Shopping Carts</span>
+                                <span class="tag">Payment Gateways</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="work-image">
+                            <img src="./assets/images/crm.png" alt="CRM">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>Customer Relationship Management</h3>
+                                    <p>Testing CRM systems and customer data management</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-info">
+                            <h3>CRM Systems</h3>
+                            <div class="work-tags">
+                                <span class="tag">Customer Data</span>
+                                <span class="tag">Workflow</span>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">About Me</span>
+                        Education & Experience
+                    </h2>
+                </div>
+
+                <div class="about-content">
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Education</h3>
+                                <div class="timeline-card">
+                                    <h4>Software Testing</h4>
+                                    <p class="institution">Minia University, ITI</p>
+                                </div>
+                                <div class="timeline-card">
+                                    <h4>Bachelor's in Computer Science</h4>
+                                    <p class="institution">Minia University, Faculty of Computers and Information (2019-2023)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Experience</h3>
+                                <div class="timeline-card">
+                                    <h4>Senior QA Engineer</h4>
+                                    <p class="institution">OrobaSoft (2025 - Present)</p>
+                                    <ul class="achievement-list">
+                                        <li>Designed and executed comprehensive test cases</li>
+                                        <li>Led defect tracking using ClickUp and TFS</li>
+                                        <li>Conducted API testing with Postman</li>
+                                        <li>Integrated automation tests with Selenium and Appium</li>
+                                    </ul>
+                    </div>
+                                </div>
+                            </div>
+
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <h4>Software Test Engineer Instructor</h4>
+                                    <p class="institution">Semi Corner (2024)</p>
+                                    <ul class="achievement-list">
+                                        <li>Developed and delivered testing courses</li>
+                                        <li>Mentored students on testing methodologies</li>
+                                        <li>Integrated real-world scenarios into training</li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+
+                        <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <h4>Mid-Level QA Engineer</h4>
+                                    <p class="institution">SBS - Specialized Business Solutions (2024-2025)</p>
+                                    <ul class="achievement-list">
+                                        <li>Automated test cases using Selenium WebDriver</li>
+                                        <li>Conducted API testing with Postman</li>
+                                        <li>Led test planning sessions</li>
+                                        <li>Supported junior testers with mentorship</li>
+                                    </ul>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section certifications-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">Certifications</span>
+                        Professional Achievements
+                    </h2>
+                </div>
+
+                <div class="certifications-grid">
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="cert-image">
+                            <img src="./assets/images/ISQB.png" alt="ISTQB">
+                            </div>
+                        <div class="cert-info">
+                            <h3>ISTQB Certified</h3>
+                            <p>International Software Testing Qualifications Board</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                        </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-1.jpg" alt="Development Skills">
+                    </div>
+                        <div class="cert-info">
+                            <h3>Development Skills</h3>
+                            <p>Advanced programming and development methodologies</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                        </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-2.jpg" alt="C#">
+                    </div>
+                        <div class="cert-info">
+                            <h3>Object-Oriented Programming</h3>
+                            <p>C# and advanced programming concepts</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                        </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="400">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-3.jpg" alt="PHP MySQL">
+                        </div>
+                        <div class="cert-info">
+                            <h3>PHP & MySQL</h3>
+                            <p>Web development and database management</p>
+                    </div>
+                        <div class="cert-glow"></div>
+                </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="500">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-4.jpg" alt="Data Structures">
+            </div>
+                        <div class="cert-info">
+                            <h3>Data Structures & Design Patterns</h3>
+                            <p>Advanced algorithms and software design</p>
+                    </div>
+                        <div class="cert-glow"></div>
+                </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="600">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-5.jpg" alt="HTML CSS">
+                            </div>
+                        <div class="cert-info">
+                            <h3>HTML5 & CSS</h3>
+                            <p>Modern web development and styling</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">Get In Touch</span>
+                        Let's Work Together
+                    </h2>
+                    <p class="section-subtitle">
+                        Ready to bring your testing vision to life? Let's discuss your project!
+                    </p>
+                    </div>
+
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>ahmed.ghaly@example.com</p>
+                        </div>
+                    </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>WhatsApp</h4>
+                                <p>(+20) 011 150 81 316</p>
+                        </div>
+                    </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Egypt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form" data-aos="fade-left" data-aos-delay="400">
+                        <form action="https://formspree.io/f/xgedjydy" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="name" required>
+                                <label>Your Name</label>
+                                <div class="form-line"></div>
+                    </div>
+
+                            <div class="form-group">
+                                <input type="email" name="email" required>
+                                <label>Your Email</label>
+                                <div class="form-line"></div>
+                </div>
+
+                            <div class="form-group">
+                                <input type="text" name="subject" required>
+                                <label>Subject</label>
+                                <div class="form-line"></div>
+            </div>
+
+                            <div class="form-group">
+                                <textarea name="message" rows="4" required></textarea>
+                                <label>Your Message</label>
+                                <div class="form-line"></div>
+                    </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                                <span class="btn-text">Send Message</span>
+                                <div class="btn-glow"></div>
+                            </button>
                         </form>
                     </div>
                 </div>
-
-
             </div>
         </section>
-        <!-- //CONTACT -->
+    </main>
 
-        <!-- FOOTER -->
-        <footer class="py-5 px-lg-5">
+    <!-- Footer -->
+    <footer class="footer">
             <div class="container">
-                <div class="row gy-4 justify-content-between">
-                    <div class="col-auto">
-                        <p class="mb-0">Designed by <a href="#" class="fw-bold">Eng / Ahmed Sayed</a></p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2024 Ahmed Ghaly. All rights reserved.</p>
                     </div>
-                    <div class="col-auto">
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/capitano6/" target="_blank"><i
-                                    class="lab la-facebook"></i></a>
-                            <a href="https://www.linkedin.com/in/ahmed-sayed-ahmed-a2039821a/" target="_blank"><i
-                                    class="lab la-linkedin"></i></a>
-                            <a href="https://github.com/AhmedSayed28" target="_blank"><i class="lab la-github"></i></a>
-                        </div>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/capitano6/" target="_blank" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ahmed-sayed-ahmed-a2039821a/" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/AhmedSayed28" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
                     </div>
                 </div>
             </div>
         </footer>
-        <!-- //FOOTER -->
 
-    </div>
-    <!-- //CONTENT WRAPPER -->
-
-
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/aos.js"></script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
 

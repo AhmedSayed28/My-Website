@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - My Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/docs.css">
+    <link rel="icon" href="./assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <div class="mobile-menu-toggle">
+        <button id="sidebarToggle" class="sidebar-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Selenium Docs</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <!-- Getting Started -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="getting-started">
+                        <span class="topic-icon">📚</span>
+                        <span class="topic-text">Getting Started</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#introduction" class="nav-link">Introduction to Selenium</a></li>
+                        <li><a href="#why-selenium" class="nav-link">Why Selenium? (Use cases)</a></li>
+                        <li><a href="#installation-setup" class="nav-link">Installation & Setup</a></li>
+                        <li><a href="#java-setup" class="nav-link">Java Setup</a></li>
+                        <li><a href="#maven-gradle-setup" class="nav-link">Maven/Gradle Setup</a></li>
+                        <li><a href="#webdriver-installation" class="nav-link">Selenium WebDriver Installation</a></li>
+                        <li><a href="#first-script" class="nav-link">Your First Selenium Script</a></li>
+                    </ul>
+                </li>
+
+                <!-- Core Concepts -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="core-concepts">
+                        <span class="topic-icon">🔧</span>
+                        <span class="topic-text">Core Concepts</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#understanding-webdriver" class="nav-link">Understanding WebDriver</a></li>
+                        <li><a href="#browser-drivers" class="nav-link">Browser Drivers (Chrome, Firefox, Edge...)</a></li>
+                        <li><a href="#locating-elements" class="nav-link">Locating Elements</a></li>
+                        <li><a href="#by-id-name-class" class="nav-link">By ID, Name, Class, CSS Selector, XPath</a></li>
+                        <li><a href="#advanced-xpath" class="nav-link">Advanced XPath Tricks</a></li>
+                        <li><a href="#working-with-webelements" class="nav-link">Working with WebElements</a></li>
+                        <li><a href="#click-sendkeys-gettext" class="nav-link">Click, SendKeys, GetText</a></li>
+                        <li><a href="#clear-getattribute" class="nav-link">Clear, GetAttribute, GetCssValue</a></li>
+                        <li><a href="#waits" class="nav-link">Waits</a></li>
+                        <li><a href="#implicit-wait" class="nav-link">Implicit Wait</a></li>
+                        <li><a href="#explicit-wait" class="nav-link">Explicit Wait</a></li>
+                        <li><a href="#fluent-wait" class="nav-link">Fluent Wait</a></li>
+                        <li><a href="#browser-navigation" class="nav-link">Browser Navigation</a></li>
+                        <li><a href="#managing-windows-tabs" class="nav-link">Managing Windows & Tabs</a></li>
+                        <li><a href="#handling-alerts" class="nav-link">Handling Alerts</a></li>
+                        <li><a href="#frames-iframes" class="nav-link">Frames & iFrames</a></li>
+                    </ul>
+                </li>
+
+                <!-- Advanced Usage -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="advanced-usage">
+                        <span class="topic-icon">🚀</span>
+                        <span class="topic-text">Advanced Usage</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#actions-class" class="nav-link">Actions Class (Mouse & Keyboard)</a></li>
+                        <li><a href="#javascript-executor" class="nav-link">JavaScriptExecutor (Scroll, Click, Highlight)</a></li>
+                        <li><a href="#taking-screenshots" class="nav-link">Taking Screenshots</a></li>
+                        <li><a href="#handling-cookies" class="nav-link">Handling Cookies</a></li>
+                        <li><a href="#working-with-dropdowns" class="nav-link">Working with Drop-downs</a></li>
+                        <li><a href="#working-with-tables" class="nav-link">Working with Tables</a></li>
+                        <li><a href="#file-upload-download" class="nav-link">File Upload & Download</a></li>
+                        <li><a href="#headless-browsers" class="nav-link">Headless Browsers</a></li>
+                    </ul>
+                </li>
+
+                <!-- Frameworks & Patterns -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="frameworks-patterns">
+                        <span class="topic-icon">🏗️</span>
+                        <span class="topic-text">Frameworks & Patterns</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#test-automation-frameworks" class="nav-link">Introduction to Test Automation Frameworks</a></li>
+                        <li><a href="#testng-integration" class="nav-link">TestNG Integration</a></li>
+                        <li><a href="#junit-integration" class="nav-link">JUnit Integration</a></li>
+                        <li><a href="#page-object-model" class="nav-link">Page Object Model (POM)</a></li>
+                        <li><a href="#data-driven-testing" class="nav-link">Data Driven Testing (Excel, CSV, JSON)</a></li>
+                        <li><a href="#bdd-cucumber" class="nav-link">BDD with Cucumber</a></li>
+                        <li><a href="#parallel-testing" class="nav-link">Parallel Testing</a></li>
+                    </ul>
+                </li>
+
+                <!-- Best Practices -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="best-practices">
+                        <span class="topic-icon">✅</span>
+                        <span class="topic-text">Best Practices</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#writing-maintainable-tests" class="nav-link">Writing Maintainable Tests</a></li>
+                        <li><a href="#reusable-methods" class="nav-link">Reusable Methods & Utilities</a></li>
+                        <li><a href="#naming-conventions" class="nav-link">Naming Conventions</a></li>
+                        <li><a href="#common-mistakes" class="nav-link">Common Mistakes & How to Avoid Them</a></li>
+                    </ul>
+                </li>
+
+                <!-- Common Issues & Solutions -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="common-issues">
+                        <span class="topic-icon">🔧</span>
+                        <span class="topic-text">Common Issues & Solutions</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#element-click-intercepted" class="nav-link">ElementClickInterceptedException</a></li>
+                        <li><a href="#stale-element-reference" class="nav-link">StaleElementReferenceException</a></li>
+                        <li><a href="#no-such-element" class="nav-link">NoSuchElementException</a></li>
+                        <li><a href="#timeout-exception" class="nav-link">TimeoutException</a></li>
+                        <li><a href="#browser-compatibility" class="nav-link">Browser Compatibility Issues</a></li>
+                    </ul>
+                </li>
+
+                <!-- Extras -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="extras">
+                        <span class="topic-icon">⚡</span>
+                        <span class="topic-text">Extras</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#selenium-grid" class="nav-link">Selenium Grid</a></li>
+                        <li><a href="#remote-webdriver" class="nav-link">Remote WebDriver</a></li>
+                        <li><a href="#ci-cd-integration" class="nav-link">CI/CD Integration (Jenkins, GitHub Actions)</a></li>
+                        <li><a href="#api-testing-alternatives" class="nav-link">API Testing with Selenium? (Clarification & Alternatives)</a></li>
+                    </ul>
+                </li>
+
+                <!-- Resources -->
+                <li class="nav-item">
+                    <div class="nav-topic" data-topic="resources">
+                        <span class="topic-icon">📖</span>
+                        <span class="topic-text">Resources</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <ul class="subtopics">
+                        <li><a href="#official-docs" class="nav-link">Official Docs & Community Links</a></li>
+                        <li><a href="#recommended-tools" class="nav-link">Recommended Tools & Plugins</a></li>
+                        <li><a href="#cheat-sheet" class="nav-link">Downloadable Cheat Sheet</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            
+            <!-- Getting Started -->
+            <section id="getting-started" class="doc-section">
+                <h1>Getting Started</h1>
+                <p class="section-description">
+                    Welcome to Selenium documentation! This guide introduces Selenium, why you might use it, and how to set up your environment with Java and Maven/Gradle. You'll also run your first WebDriver script.
+                </p>
+                
+                <section id="introduction">
+                    <h2>Introduction to Selenium</h2>
+                    <p>
+                        Selenium is a suite of tools for automating browsers. It lets you simulate real user actions—opening pages, clicking, typing, and verifying results—across different browsers.
+                    </p>
+                </section>
+
+                <section id="why-selenium">
+                    <h2>Why Selenium? (Use cases)</h2>
+                    <ul>
+                        <li>End‑to‑end UI test automation for web apps.</li>
+                        <li>Cross‑browser verification (Chrome, Firefox, Edge).</li>
+                        <li>Regression testing and smoke/sanity suites.</li>
+                        <li>Supports multiple languages (Java, Python, JS, C#, etc.).</li>
+                    </ul>
+                </section>
+
+                <section id="installation-setup">
+                    <h2>Installation & Setup</h2>
+                    
+                    <section id="java-setup">
+                        <h3>Java Setup</h3>
+                        <p>Install JDK 17+ and verify:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">bash</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>java -version
+javac -version</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="maven-gradle-setup">
+                        <h3>Maven/Gradle Setup</h3>
+                        <p>Add Selenium Java dependency to your build tool.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">xml</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code><!-- pom.xml -->
+&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
+    &lt;artifactId&gt;selenium-java&lt;/artifactId&gt;
+    &lt;version&gt;4.22.0&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">gradle</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>// build.gradle
+dependencies {
+  testImplementation 'org.seleniumhq.selenium:selenium-java:4.22.0'
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="webdriver-installation">
+                        <h3>Selenium WebDriver Installation</h3>
+                        <p>
+                            Selenium 4 uses the built‑in <em>WebDriver BiDi/DevTools</em> where supported. You still need a matching browser driver (e.g., <code>chromedriver</code>) in your <code>PATH</code> or manage it via tools like WebDriverManager.
+                        </p>
+                    </section>
+                </section>
+
+                <section id="first-script">
+                    <h2>Your First Selenium Script</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FirstTest {
+  public static void main(String[] args) {
+    // If chromedriver is not on PATH, set:
+    // System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+    WebDriver driver = new ChromeDriver();
+    try {
+      driver.get("https://example.org");
+      WebElement heading = driver.findElement(By.cssSelector("h1"));
+      System.out.println("Heading: " + heading.getText());
+    } finally {
+      driver.quit();
+    }
+  }
+}</code></pre>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Core Concepts -->
+            <section id="core-concepts" class="doc-section">
+                <h1>Core Concepts</h1>
+                <p class="section-description">
+                    Learn the pillars of Selenium: WebDriver, element location strategies, element interactions, waits, navigation, windows/tabs, alerts, and frames.
+                </p>
+
+                <section id="understanding-webdriver">
+                    <h2>Understanding WebDriver</h2>
+                    <p>
+                        WebDriver is the API for controlling the browser. You create a driver instance (e.g., <code>ChromeDriver</code>) and issue commands (navigate, find, click...).
+                    </p>
+                </section>
+
+                <section id="browser-drivers">
+                    <h2>Browser Drivers (Chrome, Firefox, Edge...)</h2>
+                    <ul>
+                        <li>Chrome: <code>ChromeDriver</code></li>
+                        <li>Firefox: <code>FirefoxDriver</code></li>
+                        <li>Edge: <code>EdgeDriver</code></li>
+                    </ul>
+                </section>
+
+                <section id="locating-elements">
+                    <h2>Locating Elements</h2>
+                    
+                    <section id="by-id-name-class">
+                        <h3>By ID, Name, Class, CSS Selector, XPath</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>driver.findElement(By.id("email"));
+driver.findElement(By.name("q"));
+driver.findElement(By.className("btn-primary"));
+driver.findElement(By.cssSelector("#login .btn.primary"));
+driver.findElement(By.xpath("//input[@type='text' and contains(@class,'search')]"));</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="advanced-xpath">
+                        <h3>Advanced XPath Tricks</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>// Following sibling
+By.xpath("//label[text()='Email']/following-sibling::input");
+// Parent navigation
+By.xpath("//*[@data-test='price']/parent::div");
+// Indexing within groups
+By.xpath("(//button[contains(.,'Add')])[2]");</code></pre>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="working-with-webelements">
+                    <h2>Working with WebElements</h2>
+                    
+                    <section id="click-sendkeys-gettext">
+                        <h3>Click, SendKeys, GetText</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>WebElement input = driver.findElement(By.id("username"));
+input.clear();
+input.sendKeys("smartTester");
+driver.findElement(By.cssSelector("button[type='submit']")).click();
+String message = driver.findElement(By.id("welcome")).getText();</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="clear-getattribute">
+                        <h3>Clear, GetAttribute, GetCssValue</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>WebElement el = driver.findElement(By.id("price"));
+el.clear();
+String placeholder = el.getAttribute("placeholder");
+String color = el.getCssValue("color");</code></pre>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="waits">
+                    <h2>Waits</h2>
+                    
+                    <section id="implicit-wait">
+                        <h3>Implicit Wait</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(5));</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="explicit-wait">
+                        <h3>Explicit Wait</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(By.id("save")));
+btn.click();</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="fluent-wait">
+                        <h3>Fluent Wait</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="language-tag">java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>import org.openqa.selenium.support.ui.FluentWait;
+
+new FluentWait&lt;WebDriver&gt;(driver)
+  .withTimeout(java.time.Duration.ofSeconds(15))
+  .pollingEvery(java.time.Duration.ofMillis(500))
+  .ignoring(org.openqa.selenium.NoSuchElementException.class)
+  .until(d -> d.findElement(By.id("status")).isDisplayed());</code></pre>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="browser-navigation">
+                    <h2>Browser Navigation</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>driver.get("https://example.org");
+driver.navigate().to("https://example.com");
+driver.navigate().back();
+driver.navigate().forward();
+driver.navigate().refresh();</code></pre>
+                    </div>
+                </section>
+
+                <section id="managing-windows-tabs">
+                    <h2>Managing Windows & Tabs</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>String main = driver.getWindowHandle();
+for (String handle : driver.getWindowHandles()) {
+  driver.switchTo().window(handle);
+}
+driver.switchTo().window(main);</code></pre>
+                    </div>
+                </section>
+
+                <section id="handling-alerts">
+                    <h2>Handling Alerts</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>org.openqa.selenium.Alert alert = driver.switchTo().alert();
+alert.accept(); // or alert.dismiss();
+// alert.sendKeys("text"); for prompt alerts</code></pre>
+                    </div>
+                </section>
+
+                <section id="frames-iframes">
+                    <h2>Frames & iFrames</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>driver.switchTo().frame("frameName");
+// ... interact inside frame ...
+driver.switchTo().defaultContent();</code></pre>
+                    </div>
+                </section>
+                        </section>
+
+            <!-- Advanced Usage -->
+            <section id="advanced-usage" class="doc-section">
+                <h1>Advanced Usage</h1>
+                <p class="section-description">
+                    Go beyond basics: actions, JavaScript execution, screenshots, cookies, dropdowns, tables, file upload/download, and headless runs.
+                </p>
+
+                <section id="actions-class">
+                    <h2>Actions Class (Mouse & Keyboard)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.interactions.Actions;
+
+Actions actions = new Actions(driver);
+actions.moveToElement(driver.findElement(By.id("menu")))
+       .click()
+       .build()
+       .perform();</code></pre>
+                    </div>
+                </section>
+
+                <section id="javascript-executor">
+                    <h2>JavaScriptExecutor (Scroll, Click, Highlight)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.JavascriptExecutor;
+
+JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+js.executeScript("arguments[0].click();", driver.findElement(By.id("save")));
+js.executeScript("arguments[0].style.border='2px solid red'", driver.findElement(By.id("email")));</code></pre>
+                    </div>
+                </section>
+
+                <section id="taking-screenshots">
+                    <h2>Taking Screenshots</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.nio.file.*;
+
+byte[] png = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+Files.write(Path.of("screenshot.png"), png);</code></pre>
+                    </div>
+                </section>
+
+                <section id="handling-cookies">
+                    <h2>Handling Cookies</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.Cookie;
+
+driver.manage().addCookie(new Cookie("auth", "token123"));
+Cookie c = driver.manage().getCookieNamed("auth");
+driver.manage().deleteCookie(c);</code></pre>
+                    </div>
+                </section>
+
+                <section id="working-with-dropdowns">
+                    <h2>Working with Drop-downs</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.support.ui.Select;
+
+Select select = new Select(driver.findElement(By.id("country")));
+select.selectByVisibleText("Egypt");
+select.selectByValue("EG");
+select.selectByIndex(2);</code></pre>
+                    </div>
+                </section>
+
+                <section id="working-with-tables">
+                    <h2>Working with Tables</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>List&lt;WebElement&gt; rows = driver.findElements(By.cssSelector("table tbody tr"));
+for (WebElement row : rows) {
+  List&lt;WebElement&gt; cols = row.findElements(By.tagName("td"));
+  System.out.println(cols.get(0).getText());
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="file-upload-download">
+                    <h2>File Upload & Download</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>// Upload (standard input[type=file])
+driver.findElement(By.id("fileInput")).sendKeys("/absolute/path/to/file.pdf");
+
+// Download handling is browser-specific; prefer verifying file presence in the downloads folder
+// or intercepting network via DevTools for robust checks.</code></pre>
+                    </div>
+                </section>
+
+                <section id="headless-browsers">
+                    <h2>Headless Browsers</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.chrome.ChromeOptions;
+
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--headless=new");
+WebDriver driver = new org.openqa.selenium.chrome.ChromeDriver(options);</code></pre>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Frameworks & Patterns -->
+            <section id="frameworks-patterns" class="doc-section">
+                <h1>Frameworks & Patterns</h1>
+                <p class="section-description">
+                    Plug Selenium into test frameworks, apply Page Object Model, run data‑driven tests, use BDD, and scale with parallel runs.
+                </p>
+
+                <section id="test-automation-frameworks">
+                    <h2>Introduction to Test Automation Frameworks</h2>
+                    <p>Popular Java choices: TestNG, JUnit, Cucumber (BDD). Each provides structure, assertions, and reporting.</p>
+                </section>
+
+                <section id="testng-integration">
+                    <h2>TestNG Integration</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">xml</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code><!-- pom.xml -->
+&lt;dependency&gt;
+  &lt;groupId&gt;org.testng&lt;/groupId&gt;
+  &lt;artifactId&gt;testng&lt;/artifactId&gt;
+  &lt;version&gt;7.10.2&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.testng.annotations.*;
+
+public class LoginTest {
+  WebDriver driver;
+
+  @BeforeMethod
+  public void setup() { driver = new ChromeDriver(); }
+
+  @AfterMethod
+  public void tearDown() { if (driver != null) driver.quit(); }
+
+  @Test
+  public void userCanLogin() {
+    driver.get("https://example.org/login");
+    driver.findElement(By.id("email")).sendKeys("user@example.org");
+    driver.findElement(By.id("password")).sendKeys("secret");
+    driver.findElement(By.cssSelector("button[type='submit']")).click();
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="junit-integration">
+                    <h2>JUnit Integration</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">xml</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code><!-- pom.xml -->
+&lt;dependency&gt;
+  &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+  &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+  &lt;version&gt;5.10.2&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+                    </div>
+                </section>
+
+                <section id="page-object-model">
+                    <h2>Page Object Model (POM)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>public class LoginPage {
+  private WebDriver driver;
+  private By email = By.id("email");
+  private By pass = By.id("password");
+  private By submit = By.cssSelector("button[type='submit']");
+
+  public LoginPage(WebDriver driver) { this.driver = driver; }
+
+  public LoginPage enterEmail(String e) { driver.findElement(email).sendKeys(e); return this; }
+  public LoginPage enterPassword(String p) { driver.findElement(pass).sendKeys(p); return this; }
+  public void submit() { driver.findElement(submit).click(); }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="data-driven-testing">
+                    <h2>Data Driven Testing (Excel, CSV, JSON)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>// Simple CSV example
+Files.lines(Path.of("users.csv"))
+  .skip(1)
+  .map(line -> line.split(","))
+  .forEach(cols -> {
+    String email = cols[0];
+    String password = cols[1];
+    // run login with data
+  });</code></pre>
+                    </div>
+                </section>
+
+                <section id="bdd-cucumber">
+                    <h2>BDD with Cucumber</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">gherkin</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>Feature: Login
+  Scenario: Valid user logs in
+    Given I open the login page
+    When I sign in with "user@example.org" and "secret"
+    Then I should see the dashboard</code></pre>
+                    </div>
+                </section>
+
+                <section id="parallel-testing">
+                    <h2>Parallel Testing</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">xml</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code><!-- testng.xml -->
+&lt;suite name="Parallel Suite" parallel="tests" thread-count="4"&gt;
+  &lt;test name="Chrome"&gt;
+    &lt;classes&gt;
+      &lt;class name="tests.LoginTest" /&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt;
+&lt;/suite&gt;</code></pre>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Best Practices -->
+            <section id="best-practices" class="doc-section">
+                <h1>Best Practices</h1>
+                <p class="section-description">
+                    Write maintainable, stable tests with clear structure, reusable utilities, and consistent naming.
+                </p>
+
+                <section id="writing-maintainable-tests">
+                    <h2>Writing Maintainable Tests</h2>
+                    <ul>
+                        <li>Use POM to encapsulate selectors and flows.</li>
+                        <li>Keep tests atomic and independent.</li>
+                        <li>Avoid brittle locators; prefer IDs and stable attributes.</li>
+                        <li>Centralize waits and common actions.</li>
+                    </ul>
+                </section>
+
+                <section id="reusable-methods">
+                    <h2>Reusable Methods & Utilities</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>public class Commons {
+  private WebDriver driver;
+  public Commons(WebDriver d){ this.driver = d; }
+  public void click(By by){ new WebDriverWait(driver, java.time.Duration.ofSeconds(10))
+      .until(ExpectedConditions.elementToBeClickable(by)).click(); }
+  public void type(By by, String text){ driver.findElement(by).clear(); driver.findElement(by).sendKeys(text); }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="naming-conventions">
+                    <h2>Naming Conventions</h2>
+                    <ul>
+                        <li>Classes: <code>LoginPage</code>, <code>CartPage</code></li>
+                        <li>Tests: <code>shouldLoginWithValidCredentials()</code></li>
+                        <li>Locators: <code>By loginButton</code>, <code>By emailInput</code></li>
+                    </ul>
+                </section>
+
+                <section id="common-mistakes">
+                    <h2>Common Mistakes & How to Avoid Them</h2>
+                    <ul>
+                        <li>Hard sleeps: replace with explicit waits.</li>
+                        <li>Overusing XPath: prefer CSS/IDs where possible.</li>
+                        <li>Not cleaning state: ensure <code>quit()</code> and data resets.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Common Issues & Solutions -->
+            <section id="common-issues" class="doc-section">
+                <h1>Common Issues & Solutions</h1>
+                <p class="section-description">
+                    Fix frequent exceptions with targeted strategies.
+                </p>
+
+                <section id="element-click-intercepted">
+                    <h2>ElementClickInterceptedException</h2>
+                    <ul>
+                        <li>Cause: element covered by overlay/sticky header.</li>
+                        <li>Fix: scroll into view or wait for overlay to disappear.</li>
+                    </ul>
+                </section>
+
+                <section id="stale-element-reference">
+                    <h2>StaleElementReferenceException</h2>
+                    <ul>
+                        <li>Cause: DOM updated, reference is no longer valid.</li>
+                        <li>Fix: re‑locate the element after page changes or waits.</li>
+                    </ul>
+                </section>
+
+                <section id="no-such-element">
+                    <h2>NoSuchElementException</h2>
+                    <ul>
+                        <li>Cause: locator not found at the moment of search.</li>
+                        <li>Fix: check locator, add waits, ensure visibility/DOM presence.</li>
+                    </ul>
+                </section>
+
+                <section id="timeout-exception">
+                    <h2>TimeoutException</h2>
+                    <ul>
+                        <li>Cause: waits exceeded before condition met.</li>
+                        <li>Fix: review conditions, increase timeout, stabilize app state.</li>
+                    </ul>
+                </section>
+
+                <section id="browser-compatibility">
+                    <h2>Browser Compatibility Issues</h2>
+                    <ul>
+                        <li>Keep browsers/drivers aligned in versions.</li>
+                        <li>Use vendor‑specific options for consistent behavior.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Extras -->
+            <section id="extras" class="doc-section">
+                <h1>Extras</h1>
+                <p class="section-description">
+                    Scale and integrate: Selenium Grid, RemoteWebDriver, and CI/CD.
+                </p>
+
+                <section id="selenium-grid">
+                    <h2>Selenium Grid</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code># Quick start (Docker)
+docker run -d -p 4442-4444:4442-4444 --name selenium-grid selenium/standalone-chrome:latest</code></pre>
+                    </div>
+                </section>
+
+                <section id="remote-webdriver">
+                    <h2>Remote WebDriver</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import org.openqa.selenium.remote.RemoteWebDriver;
+import java.net.URL;
+
+WebDriver driver = new RemoteWebDriver(
+  new URL("http://localhost:4444/wd/hub"),
+  new org.openqa.selenium.chrome.ChromeOptions()
+);</code></pre>
+                    </div>
+                </section>
+
+                <section id="ci-cd-integration">
+                    <h2>CI/CD Integration (Jenkins, GitHub Actions)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="language-tag">yaml</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code># .github/workflows/tests.yml
+name: UI Tests
+on: [push, pull_request]
+jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Run tests
+        run: mvn -B test</code></pre>
+                    </div>
+                </section>
+
+                <section id="api-testing-alternatives">
+                    <h2>API Testing with Selenium? (Clarification & Alternatives)</h2>
+                    <p>
+                        Selenium is for browser automation. For API testing, use dedicated tools like <strong>REST Assured</strong>, <strong>Postman</strong>, or <strong>Karate</strong>. Combine UI and API layers for robust coverage.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Resources -->
+            <section id="resources" class="doc-section">
+                <h1>Resources</h1>
+                <p class="section-description">
+                    Official docs, community links, and downloadable references.
+                </p>
+
+                <section id="official-docs">
+                    <h2>Official Docs & Community Links</h2>
+                    <ul class="resource-list">
+                        <li><a href="https://www.selenium.dev/documentation/" target="_blank">Selenium Official Documentation</a></li>
+                        <li><a href="https://github.com/SeleniumHQ/selenium" target="_blank">Selenium GitHub</a></li>
+                        <li><a href="https://stackoverflow.com/questions/tagged/selenium" target="_blank">Stack Overflow — selenium</a></li>
+                    </ul>
+                </section>
+
+                <section id="recommended-tools">
+                    <h2>Recommended Tools & Plugins</h2>
+                    <ul class="resource-list">
+                        <li><a href="#" target="_blank">IntelliJ IDEA / VS Code</a> — IDEs for Java automation</li>
+                        <li><a href="#" target="_blank">Allure / ExtentReports</a> — Reporting</li>
+                        <li><a href="#" target="_blank">Selenium IDE</a> — Quick recording/playback</li>
+                    </ul>
+                </section>
+
+                <section id="cheat-sheet">
+                    <h2>Downloadable Cheat Sheet</h2>
+                    <ul class="resource-list">
+                        <li><a href="#" target="_blank">Selenium Java Cheat Sheet (PDF)</a> — Core APIs & snippets</li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </main>
+   
+
+    <script src="./assets/js/docs.js"></script>
+</body>
+</html>
