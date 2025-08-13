@@ -1,6 +1,9 @@
 // Documentation JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize loader
+    initLoader();
+    
     // Initialize all functionality
     initSidebarNavigation();
     initMobileMenu();
@@ -10,6 +13,23 @@ document.addEventListener('DOMContentLoaded', function() {
     initProTips();
     initDonationSection();
 });
+
+// Loader functionality
+function initLoader() {
+    const loaderContainer = document.getElementById('loaderContainer');
+    
+    if (loaderContainer) {
+        // Simulate loading time and hide loader
+        setTimeout(() => {
+            loaderContainer.classList.add('hidden');
+            
+            // Remove loader from DOM after animation completes
+            setTimeout(() => {
+                loaderContainer.remove();
+            }, 800);
+        }, 2500); // Show loader for 2.5 seconds
+    }
+}
 
 // Sidebar Navigation
 function initSidebarNavigation() {
