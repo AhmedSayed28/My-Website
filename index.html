@@ -1,943 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GHALY Academy – APIs Testing Graduation Project</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  :root {
-    --primary: #0066ff;
-    --primary-light: #3385ff;
-    --primary-dark: #0052cc;
-    --secondary: #00c9ff;
-    --accent: #7c3aed;
-    --bg-dark: #0a0e27;
-    --bg-card: rgba(255, 255, 255, 0.03);
-    --bg-card-hover: rgba(255, 255, 255, 0.06);
-    --text-primary: #ffffff;
-    --text-secondary: #a8b2d1;
-    --text-muted: #8892b0;
-    --border: rgba(255, 255, 255, 0.1);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    --glow: 0 0 20px rgba(0, 102, 255, 0.3);
-  }
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
-    background-attachment: fixed;
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-  }
-  
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  
-  /* Fixed Navigation */
-  .nav-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(10, 14, 39, 0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    animation: slideDown 0.6s ease-out;
-  }
-  
-  .nav-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .nav-logo {
-    font-size: 1.25rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .nav-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(0, 102, 255, 0.1);
-    border: 1px solid rgba(0, 102, 255, 0.3);
-    border-radius: 50px;
-    font-size: 0.875rem;
-    color: var(--secondary);
-  }
-  
-  /* Hero Cover */
-  .cover {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 8rem 2rem 4rem;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
-    filter: blur(60px);
-    animation: pulse 4s ease-in-out infinite;
-  }
-  
-  .cover-content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .cover h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1.5rem;
-    animation: fadeInUp 0.8s ease-out;
-    letter-spacing: -0.02em;
-  }
-  
-  .cover-meta {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-    animation: fadeInUp 1s ease-out 0.2s backwards;
-  }
-  
-  .meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.5rem;
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    font-size: 1rem;
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
-  }
-  
-  .meta-item:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: var(--glow);
-  }
-  
-  .meta-item i {
-    font-size: 1.25rem;
-    color: var(--primary);
-  }
-  
-  /* Main Container */
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Section Styles */
-  .section {
-    background: var(--bg-card);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 3rem;
-    margin-bottom: 3rem;
-    box-shadow: var(--shadow);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  
-  .section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .section:hover {
-    background: var(--bg-card-hover);
-    border-color: rgba(0, 102, 255, 0.3);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), var(--glow);
-    transform: translateY(-4px);
-  }
-  
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border);
-  }
-  
-  .section-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 12px;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.3);
-  }
-  
-  h2 {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.01em;
-  }
-  
-  .section-description {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-  
-  /* API Cards */
-  .api-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-  
-  .api-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .api-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--primary), var(--secondary));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .api-card:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--primary);
-    transform: translateX(8px);
-  }
-  
-  .api-card:hover::before {
-    opacity: 1;
-  }
-  
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  h3::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--primary);
-  }
-  
-  .api-details {
-    display: grid;
-    gap: 0.75rem;
-  }
-  
-  .api-detail-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-  }
-  
-  .api-detail-label {
-    font-weight: 600;
-    color: var(--primary-light);
-    min-width: 100px;
-  }
-  
-  code {
-    font-family: 'JetBrains Mono', monospace;
-    background: rgba(0, 102, 255, 0.1);
-    border: 1px solid rgba(0, 102, 255, 0.2);
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    color: var(--secondary);
-    font-size: 0.875rem;
-    white-space: nowrap;
-  }
-  
-  .method-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  .method-get {
-    background: rgba(16, 185, 129, 0.15);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-  }
-  
-  .method-post {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-  }
-  
-  .method-put {
-    background: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.3);
-  }
-  
-  .method-delete {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-  }
-  
-  /* Lists */
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    position: relative;
-    padding-left: 2rem;
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-  
-  li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: 700;
-    font-size: 1.25rem;
-  }
-  
-  ul ul {
-    margin-top: 0.75rem;
-    padding-left: 0;
-  }
-  
-  ul ul li::before {
-    content: '◆';
-    font-size: 0.875rem;
-  }
-  
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 3rem 2rem;
-    background: rgba(10, 14, 39, 0.5);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 0.9375rem;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .footer-content {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .footer-divider {
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    margin: 1.5rem auto;
-  }
-  
-  /* Animations */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 0.5;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .nav-header {
-      padding: 1rem;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Sayed - QA/QC Software Engineer</title>
     
-    .nav-content {
-      flex-direction: column;
-      gap: 1rem;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
-    .cover {
-      padding: 6rem 1rem 3rem;
-    }
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .cover h1 {
-      font-size: 2rem;
-    }
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    .cover-meta {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .section {
-      padding: 2rem 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    h2 {
-      font-size: 1.5rem;
-    }
-    
-    .section-icon {
-      width: 40px;
-      height: 40px;
-      font-size: 1.25rem;
-    }
-  }
-  
-  /* Print Styles */
-  @media print {
-    body {
-      background: white;
-      color: black;
-    }
-    
-    .nav-header {
-      position: static;
-      background: white;
-      border-bottom: 2px solid #000;
-    }
-    
-    .section {
-      page-break-inside: avoid;
-      border: 1px solid #ddd;
-      box-shadow: none;
-    }
-    
-    .footer {
-      background: white;
-      border-top: 2px solid #000;
-    }
-  }
-</style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" href="./assets/images/favicon.ico">
 </head>
+
 <body>
+    <!-- Cursor Follower -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-dot"></div>
 
-<!-- Fixed Navigation -->
-<nav class="nav-header">
-  <div class="nav-content">
-    <div class="nav-logo">
-      <i class="fas fa-graduation-cap"></i> GHALY Academy
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
     </div>
-    <div class="nav-badge">
-      <i class="fas fa-code"></i>
-      <span>APIs Testing Project</span>
-    </div>
-  </div>
-</nav>
 
-<!-- Hero Cover -->
-<div class="cover">
-  <div class="cover-content">
-    <h1>GHALY Academy – APIs Testing Graduation Project</h1>
-    <div class="cover-meta">
-      <div class="meta-item">
-        <i class="far fa-calendar"></i>
-        <span>📅 Duration: 27/11/2025 → 01/12/2025 (8:00 PM)</span>
-      </div>
-      <div class="meta-item">
-        <i class="fas fa-tools"></i>
-        <span>🧰 Tool: Postman</span>
-      </div>
+    <!-- Particle Background -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
-  </div>
-</div>
 
-<!-- Main Container -->
-<div class="container">
-
-  <!-- Objective Section -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <i class="fas fa-bullseye"></i>
-      </div>
-      <h2>🎯 Project Objective</h2>
+    <!-- Feedback Message Box -->
+    <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-content">
+            <p> <button class="feedback-link" onclick="scrollToContact()">Let's Contact&nbsp;&nbsp; &nbsp;&nbsp;
+            </button> </p>
+            <button class="feedback-close" onclick="closeFeedback()" aria-label="Close feedback">
+                <span>×</span>
+            </button>
+        </div>
     </div>
-    <p class="section-description">The goal of this project is to perform comprehensive API testing using <b>Postman</b>.
-    Students are required to design and execute <b>all available test cases in the POST responses</b>
-    of the APIs listed below. Each test case should verify both <b>functional correctness</b> and 
-    <b>response validation</b> based on the provided API documentation.</p>
-  </section>
 
-  <!-- APIs Section -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <i class="fas fa-network-wired"></i>
-      </div>
-      <h2>📋 APIs to Be Tested</h2>
-    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <span class="logo-text">Ahmed Sayed</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active" data-section="home">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#services" class="nav-link" data-section="services">
+                    <span class="nav-icon"><i class="fas fa-cogs"></i></span>
+                    <span class="nav-text">Services</span>
+                </a>
+                <a href="#work" class="nav-link" data-section="work">
+                    <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                    <span class="nav-text">Work</span>
+                </a>
+                <a href="#about" class="nav-link" data-section="about">
+                    <span class="nav-icon"><i class="fas fa-user"></i></span>
+                    <span class="nav-text">About</span>
+                </a>
+                <a href="#certifications" class="nav-link" data-section="certifications">
+                    <span class="nav-icon"><i class="fas fa-certificate"></i></span>
+                    <span class="nav-text">Certifications</span>
+                </a>
+                <a href="#contact" class="nav-link" data-section="contact">
+                    <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                    <span class="nav-text">Contact</span>
+                </a>
+                
+            </div>
+
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section home-section">
+            <div class="container">
+                <div class="home-content">
+                    <div class="home-text" data-aos="fade-up" data-aos-delay="200">
+                        <div class="greeting">
+                            <span class="wave">👋</span>
+                            <span class="greeting-text">Hello, I'm</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            <span class="title-line">Ahmed Sayed</span>
+                            <span class="title-subtitle">QA/QC Software Engineer</span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            A passionate and innovative Senior QA Engineer with 3+ years of experience in 
+                            <span class="highlight">manual testing</span>, 
+                            <span class="highlight">automated testing</span>, and 
+                            <span class="highlight">API testing</span>. 
+                            I transform complex testing challenges into elegant solutions.
+                        </p>
+                        
+                        <div class="hero-actions">
+                            <a href="./assets/CV/SeniorQA_AhmedSayed.pdf" target="_blank" class="btn btn-primary">
+                                <span class="btn-icon"><i class="fas fa-download"></i></span>
+                                <span class="btn-text">Download CV</span>
+                                <div class="btn-glow"></div>
+                            </a>
+                            
+                            <a href="https://wa.link/9dcxq8" target="_blank" class="btn btn-secondary">
+                                <span class="btn-icon"><i class="fab fa-whatsapp"></i></span>
+                                <span class="btn-text">WhatsApp Me</span>
+                            </a>
+                            
+                            <a href="docs.html" target="_blank" class="btn btn-accent">
+                                <span class="btn-icon"><i class="fas fa-book"></i></span>
+                                <span class="btn-text">Selenium Docs</span>
+                                <div class="btn-glow"></div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="home-visual" data-aos="fade-left" data-aos-delay="400">
+                        <div class="profile-card">
+                            <div class="profile-image">
+                                <img src="./assets/images/person.jpg" alt="Ahmed Sayed">
+                                <div class="profile-glow"></div>
+                            </div>
+                            <div class="floating-elements">
+                                <div class="floating-icon" style="--delay: 0s">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 1s">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 2s">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                    <span>Scroll to explore</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">What I Do</span>
+                        Services & Expertise
+                    </h2>
+                    <p class="section-subtitle">
+                        Transforming testing challenges into innovative solutions with cutting-edge tools and methodologies
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon">
+                            <i class="fas fa-flask"></i>
+                            <div class="icon-glow"></div>
+                            </div>
+                        <h3>Manual Testing</h3>
+                        <p>Comprehensive test case design, detailed bug reporting, and efficient test management using industry-leading tools.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Test Cases</span>
+                            <span class="feature-tag">Bug Reports</span>
+                            <span class="feature-tag">Test Management</span>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                            <div class="icon-glow"></div>
+                            </div>
+                        <h3>Automated Testing</h3>
+                        <p>Development of robust test automation frameworks and scripts to enhance efficiency and ensure software reliability.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Selenium</span>
+                            <span class="feature-tag">Appium</span>
+                            <span class="feature-tag">TestNG</span>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon">
+                            <i class="fas fa-link"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>API Testing</h3>
+                        <p>Comprehensive API validation including functionality, performance, and security testing using modern tools.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Postman</span>
+                            <span class="feature-tag">Swagger</span>
+                            <span class="feature-tag">REST APIs</span>
+                            </div>
+                        <div class="card-glow"></div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="section work-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">My Experience</span>
+                        Domains I've Worked On
+                    </h2>
+                    <p class="section-subtitle">
+                        Diverse experience across multiple industries and technologies
+                    </p>
+                </div>
+
+                <div class="work-grid">
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="work-image">
+                            <img src="./assets/images/ai.png" alt="AI">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>Artificial Intelligence</h3>
+                                    <p>Testing AI-powered applications and machine learning models</p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="work-info">
+                            <h3>AI & Machine Learning</h3>
+                            <div class="work-tags">
+                                <span class="tag">AI Testing</span>
+                                <span class="tag">ML Models</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="work-image">
+                            <img src="./assets/images/fintech.png" alt="FinTech">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>Financial Technology</h3>
+                                    <p>Testing secure financial applications and payment systems</p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="work-info">
+                            <h3>FinTech Solutions</h3>
+                            <div class="work-tags">
+                                <span class="tag">Payment Systems</span>
+                                <span class="tag">Security</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="work-image">
+                            <img src="./assets/images/ecommerce.png" alt="E-commerce">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>E-commerce Platforms</h3>
+                                    <p>Testing online shopping experiences and payment flows</p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="work-info">
+                            <h3>E-commerce</h3>
+                            <div class="work-tags">
+                                <span class="tag">Shopping Carts</span>
+                                <span class="tag">Payment Gateways</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="work-image">
+                            <img src="./assets/images/crm.png" alt="CRM">
+                            <div class="work-overlay">
+                                <div class="overlay-content">
+                                    <h3>Customer Relationship Management</h3>
+                                    <p>Testing CRM systems and customer data management</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-info">
+                            <h3>CRM Systems</h3>
+                            <div class="work-tags">
+                                <span class="tag">Customer Data</span>
+                                <span class="tag">Workflow</span>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">About Me</span>
+                        Education & Experience
+                    </h2>
+                </div>
+
+                <div class="about-content">
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Education</h3>
+                                <div class="timeline-card">
+                                    <h4>Software Testing</h4>
+                                    <p class="institution">Minia University, ITI</p>
+                                </div>
+                                <div class="timeline-card">
+                                    <h4>Bachelor's in Computer Science</h4>
+                                    <p class="institution">Minia University, Faculty of Computers and Information (2019-2023)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Experience</h3>
+                                <div class="timeline-card">
+                                    <h4>Senior QA Engineer</h4>
+                                    <p class="institution">OrobaSoft (2025 - Present)</p>
+                                    <ul class="achievement-list">
+                                        <li>Designed and executed comprehensive test cases</li>
+                                        <li>Led defect tracking using ClickUp and TFS</li>
+                                        <li>Conducted API testing with Postman</li>
+                                        <li>Integrated automation tests with Selenium and Appium</li>
+                                    </ul>
+                    </div>
+                                </div>
+                            </div>
+
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <h4>Software Test Engineer Instructor</h4>
+                                    <p class="institution">Semi Corner (2024)</p>
+                                    <ul class="achievement-list">
+                                        <li>Developed and delivered testing courses</li>
+                                        <li>Mentored students on testing methodologies</li>
+                                        <li>Integrated real-world scenarios into training</li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+
+                        <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <h4>Mid-Level QA Engineer</h4>
+                                    <p class="institution">SBS - Specialized Business Solutions (2024-2025)</p>
+                                    <ul class="achievement-list">
+                                        <li>Automated test cases using Selenium WebDriver</li>
+                                        <li>Conducted API testing with Postman</li>
+                                        <li>Led test planning sessions</li>
+                                        <li>Supported junior testers with mentorship</li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="500">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <h4>Software QA Engineer</h4>
+                                    <p class="institution">Wakeb_Data (02/2022 – 01/2024)</p>
+                                    <ul class="achievement-list">
+                                        <li>Conducted manual testing across multiple platforms, reducing defect leakage</li>
+                                        <li>Collaborated with developers to resolve identified issues, improving time-to-fixing</li>
+                                        <li>Performed functional and regression testing for web applications</li>
+                                        <li>Designed user-friendly test cases that optimized user experience testing</li>
+                                        <li>Designed and implemented test automation strategies, improving coverage</li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+
+                        <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <h4>Software Test Engineer Trainee</h4>
+                                    <p class="institution">ITWorx Education (12/2021 – 02/2022)</p>
+                                    <ul class="achievement-list">
+                                        <li>Conducted manual testing across multiple platforms, reducing defect leakage</li>
+                                        <li>Collaborated with developers to resolve identified issues, improving time-to-fixing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section certifications-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">Certifications</span>
+                        Professional Achievements
+                    </h2>
+                </div>
+
+                <div class="certifications-grid">
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="cert-image">
+                            <img src="./assets/images/ISQB.png" alt="ISTQB">
+                            </div>
+                        <div class="cert-info">
+                            <h3>ISTQB Certified</h3>
+                            <p>International Software Testing Qualifications Board</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                        </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-1.jpg" alt="Development Skills">
+                    </div>
+                        <div class="cert-info">
+                            <h3>Development Skills</h3>
+                            <p>Advanced programming and development methodologies</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                        </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-2.jpg" alt="C#">
+                    </div>
+                        <div class="cert-info">
+                            <h3>Object-Oriented Programming</h3>
+                            <p>C# and advanced programming concepts</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                        </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="400">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-3.jpg" alt="PHP MySQL">
+                        </div>
+                        <div class="cert-info">
+                            <h3>PHP & MySQL</h3>
+                            <p>Web development and database management</p>
+                    </div>
+                        <div class="cert-glow"></div>
+                </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="500">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-4.jpg" alt="Data Structures">
+            </div>
+                        <div class="cert-info">
+                            <h3>Data Structures & Design Patterns</h3>
+                            <p>Advanced algorithms and software design</p>
+                    </div>
+                        <div class="cert-glow"></div>
+                </div>
+
+                    <div class="cert-card" data-aos="flip-left" data-aos-delay="600">
+                        <div class="cert-image">
+                            <img src="./assets/images/blog-post-5.jpg" alt="HTML CSS">
+                            </div>
+                        <div class="cert-info">
+                            <h3>HTML5 & CSS</h3>
+                            <p>Modern web development and styling</p>
+                            </div>
+                        <div class="cert-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <span class="title-accent">Get In Touch</span>
+                        Let's Work Together
+                    </h2>
+                    <p class="section-subtitle">
+                        Ready to bring your testing vision to life? Let's discuss your project!
+                    </p>
+                    </div>
+
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>qa.ahmedsayed@gmail.com</p>
+                        </div>
+                    </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>WhatsApp</h4>
+                                <p>(+20) 011 150 81 316</p>
+                        </div>
+                    </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Egypt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form" data-aos="fade-left" data-aos-delay="400">
+                        <form action="https://formspree.io/f/xgedjydy" method="POST" id="contactForm">
+                            <div class="form-group">
+                                <input type="text" name="name" required>
+                                <label>Your Name</label>
+                                <div class="form-line"></div>
+                    </div>
+
+                            <div class="form-group">
+                                <input type="email" name="email" required>
+                                <label>Your Email</label>
+                                <div class="form-line"></div>
+                </div>
+
+                            <div class="form-group">
+                                <input type="text" name="subject" required>
+                                <label>Subject</label>
+                                <div class="form-line"></div>
+            </div>
+
+                            <div class="form-group">
+                                <textarea name="message" rows="4" required></textarea>
+                                <label>Your Message</label>
+                                <div class="form-line"></div>
+                    </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                                <span class="btn-text">Send Message</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </form>
+                        
+                        <!-- Formspree Status -->
+                        <div id="formStatus" style="display: none; margin-top: 15px; padding: 10px; border-radius: 5px; text-align: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+            <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2024 Ahmed Sayed. All rights reserved.</p>
+                    </div>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/capitano6/" target="_blank" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ahmed-sayed-a2039821a/" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/AhmedSayed28" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./assets/js/main.js"></script>
     
-    <div class="api-grid">
-      <!-- API 1 -->
-      <div class="api-card">
-        <h3>API 1: Get All Products List</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/productsList</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-get">GET</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response:</b></span>
-            <span>All products list</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 2 -->
-      <div class="api-card">
-        <h3>API 2: Get All Brands List</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/brandsList</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-get">GET</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response:</b></span>
-            <span>All brands list</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 3 -->
-      <div class="api-card">
-        <h3>API 3: POST To Search Product</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/searchProduct</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-post">POST</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Parameter:</b></span>
-            <span>search_product (e.g., top, tshirt, jean)</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response:</b></span>
-            <span>Searched products list</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 4 -->
-      <div class="api-card">
-        <h3>API 4: POST Without Parameter</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>400</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>Bad request, parameter missing</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 5 -->
-      <div class="api-card">
-        <h3>API 5: POST To Verify Login (valid details)</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/verifyLogin</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-post">POST</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Parameters:</b></span>
-            <span>email, password</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>User exists!</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 6 -->
-      <div class="api-card">
-        <h3>API 6: POST To Verify Login (missing email)</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>400</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>Bad request, email or password parameter is missing in POST request.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 7 -->
-      <div class="api-card">
-        <h3>API 7: POST To Verify Login (invalid details)</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>404</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>User not found!</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 8 -->
-      <div class="api-card">
-        <h3>API 8: POST To Create/Register User Account</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/createAccount</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-post">POST</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Parameters:</b></span>
-            <span>name, email, password, title, birth_date, birth_month, birth_year, firstname, lastname, company, address1, address2, country, zipcode, state, city, mobile_number</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>201</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>User created!</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 9 -->
-      <div class="api-card">
-        <h3>API 9: DELETE To Delete User Account</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/deleteAccount</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-delete">DELETE</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Parameters:</b></span>
-            <span>email, password</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>Account deleted!</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 10 -->
-      <div class="api-card">
-        <h3>API 10: PUT To Update User Account</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/updateAccount</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-put">PUT</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Parameters:</b></span>
-            <span>name, email, password, title, birth_date, birth_month, birth_year, firstname, lastname, company, address1, address2, country, zipcode, state, city, mobile_number</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>User updated!</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 11 -->
-      <div class="api-card">
-        <h3>API 11: GET User Account Detail by Email</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/getUserDetailByEmail</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-get">GET</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Parameter:</b></span>
-            <span>email</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response:</b></span>
-            <span>User detail</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- API 12 -->
-      <div class="api-card">
-        <h3>API 12: DELETE To Verify Login</h3>
-        <div class="api-details">
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>URL:</b></span>
-            <code>https://automationexercise.com/api/verifyLogin</code>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Method:</b></span>
-            <span class="method-badge method-delete">DELETE</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Response Code:</b></span>
-            <span>200</span>
-          </div>
-          <div class="api-detail-item">
-            <span class="api-detail-label"><b>Message:</b></span>
-            <span>Successfully.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Deliverables Section -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <i class="fas fa-puzzle-piece"></i>
-      </div>
-      <h2>🧩 Deliverables</h2>
-    </div>
-    <ul>
-      <li>Postman collection including all APIs with proper test cases.</li>
-      <li>Each API must include:
-        <ul>
-          <li>Request configuration</li>
-          <li>Assertions for status code & response body</li>
-          <li>Validation for both positive & negative scenarios</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Submission Section -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <i class="fas fa-flag-checkered"></i>
-      </div>
-      <h2>🏁 Submission</h2>
-    </div>
-    <p class="section-description">Submit the exported Postman collection (<code>.json</code>) before 
-    <b>01 / 12 / 2025 – 8:00 PM</b> via the assigned submission channel.</p>
-  </section>
-
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-divider"></div>
-    <p>© 2025 GHALY Academy | APIs Testing Graduation Project</p>
-  </div>
-</footer>
-
-<script>
-  // Scroll reveal animation
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.section').forEach(section => {
-    observer.observe(section);
-  });
-
-  // Smooth scroll for navigation
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+    <!-- Formspree Integration -->
+    <script>
+        var form = document.getElementById("contactForm");
+        var status = document.getElementById("formStatus");
+        
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Show loading
+            status.style.display = "block";
+            status.style.background = "#3498db";
+            status.style.color = "white";
+            status.innerHTML = "Sending message...";
+            
+            var data = new FormData(event.target);
+            
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    status.style.background = "#27ae60";
+                    status.innerHTML = "Thanks for your submission!";
+                    form.reset();
+                } else {
+                    const errorData = await response.json();
+                    if (Object.hasOwn(errorData, 'errors')) {
+                        status.style.background = "#e74c3c";
+                        status.innerHTML = errorData.errors.map(error => error.message).join(", ");
+                    } else {
+                        status.style.background = "#e74c3c";
+                        status.innerHTML = "Oops! There was a problem submitting your form";
+                    }
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                status.style.background = "#e74c3c";
+                status.innerHTML = "Oops! There was a problem submitting your form";
+            }
+            
+            // Hide status after 5 seconds
+            setTimeout(() => {
+                status.style.display = "none";
+            }, 5000);
+        }
+        
+        if (form) {
+            form.addEventListener("submit", handleSubmit);
+        }
+    </script>
+    
+    <!-- Feedback Box Functions -->
+    <script>
+        // Show feedback box after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const feedbackBox = document.getElementById('feedbackBox');
+                if (feedbackBox) {
+                    feedbackBox.classList.add('show');
+                }
+            }, 2000); // Show after 2 seconds
         });
-      }
-    });
-  });
-</script>
-
+        
+        // Scroll to contact form
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        // Close feedback box
+        function closeFeedback() {
+            const feedbackBox = document.getElementById('feedbackBox');
+            if (feedbackBox) {
+                feedbackBox.style.transform = 'translateX(100%)';
+                feedbackBox.style.opacity = '0';
+                
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    feedbackBox.remove();
+                }, 300);
+            }
+        }
+    </script>
 </body>
+
 </html>
