@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students Progress & Scores - GHALY Academy</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary: #0066ff;
+    --primary-light: #3385ff;
+    --primary-dark: #0052cc;
+    --secondary: #00c9ff;
+    --accent: #7c3aed;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-dark: #0a0e27;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-card-hover: rgba(255, 255, 255, 0.06);
+    --text-primary: #ffffff;
+    --text-secondary: #a8b2d1;
+    --text-muted: #8892b0;
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --glow: 0 0 20px rgba(0, 102, 255, 0.3);
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 14, 39, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.6s ease-out;
+  }
+  
+  .nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nav-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 102, 255, 0.1);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    color: var(--secondary);
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8rem 2rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+  }
+  
+  .weekly-update {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    color: var(--success);
+    font-weight: 600;
+  }
+  
+  .update-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  
+  .filter-group {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .filter-btn {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+  }
+  
+  .filter-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  
+  .filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+  
+  .students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .student-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .student-card:nth-child(1) { animation-delay: 0.1s; }
+  .student-card:nth-child(2) { animation-delay: 0.2s; }
+  .student-card:nth-child(3) { animation-delay: 0.3s; }
+  .student-card:nth-child(4) { animation-delay: 0.4s; }
+  .student-card:nth-child(5) { animation-delay: 0.5s; }
+  .student-card:nth-child(6) { animation-delay: 0.6s; }
+  .student-card:nth-child(7) { animation-delay: 0.7s; }
+  .student-card:nth-child(8) { animation-delay: 0.8s; }
+  .student-card:nth-child(9) { animation-delay: 0.9s; }
+  
+  .student-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .student-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(0, 102, 255, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), var(--glow);
+  }
+  
+  .student-card:hover::before {
+    opacity: 1;
+  }
+  
+  .student-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .student-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.3);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .student-card:hover .student-avatar {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .student-info {
+    flex: 1;
+  }
+  
+  .student-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .student-id {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .score-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  
+  .score-item {
+    text-align: center;
+  }
+  
+  .score-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  
+  .score-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .weekly-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .score-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--success);
+    font-weight: 600;
+  }
+  
+  .progress-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .progress-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  
+  .progress-percentage {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  
+  .progress-bar-container {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 50px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+    animation: shimmer 2s infinite;
+  }
+  
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .badge-excellent {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  
+  .badge-good {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+  
+  .badge-needs-improvement {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(10, 14, 39, 0.5);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .footer-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin: 1.5rem auto;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse-dot {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nav-header {
+      padding: 1rem;
+    }
+    
+    .nav-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .container {
+      padding: 6rem 1rem 2rem;
+    }
+    
+    .controls-bar {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    
+    .filter-group {
+      flex-direction: column;
+    }
+    
+    .students-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav-header">
+  <div class="nav-content">
+    <div class="nav-logo">
+      <i class="fas fa-graduation-cap"></i> GHALY Academy
+    </div>
+    <div class="nav-badge">
+      <i class="fas fa-chart-line"></i>
+      <span>Student Dashboard</span>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-title">Students Progress & Scores</h1>
+    <p class="page-subtitle">Track and monitor student performance based on completed tasks and weekly assessments</p>
+  </div>
+
+  <div class="controls-bar">
+    <div class="weekly-update">
+      <span class="update-pulse"></span>
+      <span>Updated This Week</span>
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" onclick="filterStudents('all')">
+        <i class="fas fa-users"></i> All Students
+      </button>
+      <button class="filter-btn" onclick="filterStudents('top')">
+        <i class="fas fa-arrow-up"></i> Top Scores
+      </button>
+      <button class="filter-btn" onclick="filterStudents('lowest')">
+        <i class="fas fa-arrow-down"></i> Lowest Scores
+      </button>
+    </div>
+  </div>
+
+  <div class="students-grid" id="studentsGrid">
+    
+    <div class="student-card" data-score="95">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=12" alt="Ahmed Hassan" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Ahmed Hassan</h3>
+          <p class="student-id">ID: STD-2025-001</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">95</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">18</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +3
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">95%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 95%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-excellent">
+        <i class="fas fa-star"></i> Excellent
+      </span>
+    </div>
+
+    <div class="student-card" data-score="88">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=23" alt="Fatima Ali" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Fatima Ali</h3>
+          <p class="student-id">ID: STD-2025-002</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">88</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">16</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +2
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">88%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 88%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-excellent">
+        <i class="fas fa-star"></i> Excellent
+      </span>
+    </div>
+
+    <div class="student-card" data-score="92">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=33" alt="Mohamed Salah" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Mohamed Salah</h3>
+          <p class="student-id">ID: STD-2025-003</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">92</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">19</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +5
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">92%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 92%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-excellent">
+        <i class="fas fa-star"></i> Excellent
+      </span>
+    </div>
+
+    <div class="student-card" data-score="75">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=47" alt="Sara Ibrahim" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Sara Ibrahim</h3>
+          <p class="student-id">ID: STD-2025-004</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">75</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">14</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +1
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">75%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 75%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-good">
+        <i class="fas fa-thumbs-up"></i> Good
+      </span>
+    </div>
+
+    <div class="student-card" data-score="82">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=54" alt="Omar Khaled" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Omar Khaled</h3>
+          <p class="student-id">ID: STD-2025-005</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">82</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">15</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +2
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">82%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 82%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-good">
+        <i class="fas fa-thumbs-up"></i> Good
+      </span>
+    </div>
+
+    <div class="student-card" data-score="68">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=65" alt="Nour Ahmed" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Nour Ahmed</h3>
+          <p class="student-id">ID: STD-2025-006</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">68</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">12</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +1
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">68%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 68%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-needs-improvement">
+        <i class="fas fa-exclamation-circle"></i> Needs Improvement
+      </span>
+    </div>
+
+    <div class="student-card" data-score="90">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=15" alt="Youssef Mohamed" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Youssef Mohamed</h3>
+          <p class="student-id">ID: STD-2025-007</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">90</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">17</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +4
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">90%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 90%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-excellent">
+        <i class="fas fa-star"></i> Excellent
+      </span>
+    </div>
+
+    <div class="student-card" data-score="78">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=28" alt="Layla Mahmoud" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Layla Mahmoud</h3>
+          <p class="student-id">ID: STD-2025-008</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">78</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">15</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +2
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">
+            <span class="progress-percentage">78%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 78%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-good">
+        <i class="fas fa-thumbs-up"></i> Good
+      </span>
+    </div>
+
+    <div class="student-card" data-score="85">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=41" alt="Karim Said" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Karim Said</h3>
+          <p class="student-id">ID: STD-2025-009</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">85</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">16</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +3
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">85%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 85%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-excellent">
+        <i class="fas fa-star"></i> Excellent
+      </span>
+    </div>
+
+    <div class="student-card" data-score="72">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=18" alt="Mariam Farid" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Mariam Farid</h3>
+          <p class="student-id">ID: STD-2025-010</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">72</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">13</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +1
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">72%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 72%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-good">
+        <i class="fas fa-thumbs-up"></i> Good
+      </span>
+    </div>
+
+    <div class="student-card" data-score="97">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=31" alt="Hassan Abdel Rahman" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Hassan Abdel Rahman</h3>
+          <p class="student-id">ID: STD-2025-011</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">97</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">20</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +6
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">97%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 97%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-excellent">
+        <i class="fas fa-star"></i> Excellent
+      </span>
+    </div>
+
+    <div class="student-card" data-score="65">
+      <div class="student-header">
+        <img src="https://i.pravatar.cc/150?img=44" alt="Amira Nabil" class="student-avatar">
+        <div class="student-info">
+          <h3 class="student-name">Amira Nabil</h3>
+          <p class="student-id">ID: STD-2025-012</p>
+        </div>
+      </div>
+      <div class="score-section">
+        <div class="score-item">
+          <div class="score-label">Total Score</div>
+          <div class="score-value">65</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Weekly Score</div>
+          <div class="weekly-score">
+            <div class="score-value">11</div>
+            <span class="score-change">
+              <i class="fas fa-arrow-up"></i> +1
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Task Completion</span>
+          <span class="progress-percentage">65%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 65%"></div>
+        </div>
+      </div>
+      <span class="status-badge badge-needs-improvement">
+        <i class="fas fa-exclamation-circle"></i> Needs Improvement
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-divider"></div>
+    <p>© 2025 GHALY Academy | Students Progress & Scores Dashboard</p>
+  </div>
+</footer>
+
+<script>
+  function filterStudents(type) {
+    const cards = Array.from(document.querySelectorAll('.student-card'));
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.closest('.filter-btn').classList.add('active');
+    
+    let sortedCards = [];
+    
+    if (type === 'all') {
+      sortedCards = cards;
+    } else if (type === 'top') {
+      sortedCards = cards.sort((a, b) => {
+        return parseInt(b.getAttribute('data-score')) - parseInt(a.getAttribute('data-score'));
+      });
+    } else if (type === 'lowest') {
+      sortedCards = cards.sort((a, b) => {
+        return parseInt(a.getAttribute('data-score')) - parseInt(b.getAttribute('data-score'));
+      });
+    }
+    
+    const grid = document.getElementById('studentsGrid');
+    grid.innerHTML = '';
+    sortedCards.forEach(card => grid.appendChild(card));
+    
+    cards.forEach((card, index) => {
+      card.style.animation = 'none';
+      setTimeout(() => {
+        card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s forwards`;
+      }, 10);
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+      const width = bar.style.width;
+      bar.style.width = '0%';
+      setTimeout(() => {
+        bar.style.width = width;
+      }, 500);
+    });
+  });
+</script>
+
+</body>
+</html>
